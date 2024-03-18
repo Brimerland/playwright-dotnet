@@ -73,6 +73,9 @@ extends:
               src/Playwright.TestAdapter/Playwright.TestAdapter.csproj;
             packDirectory: '$(Build.ArtifactStagingDirectory)/nuget'
             versioningScheme: 'off'
+        - task: ManifestGeneratorTask@0
+          inputs:
+            BuildDropPath: '$(Build.ArtifactStagingDirectory)'
         - task: 1ES.PublishNuget@1
           displayName: Publish Microsoft.Playwright{NUnit,MSTest,TestAdapter}
           condition: eq('${{parameters.doRelease}}', true)
